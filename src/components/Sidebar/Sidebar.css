@@ -1,0 +1,77 @@
+.header_style{
+    background-color:#2f4f4f;
+    border-top:solid 4px #e6a117;
+
+    /* min-height:50%; */
+    padding: 1em 5em;
+    /* color:darkgreen; */
+}
+.flex{
+    display:flex
+}
+.Icon{
+    height:60px;
+    width:40px;
+    color:#FF6600;
+}
+.Hover_noactive:hover{
+    transform:scale(1.2);
+    transition-duration:0.5s;
+    /* background-color:#93dbe5; */
+}
+
+
+.Hover:hover{
+    transform:scale(1.1);
+    transition-duration:0.5s;
+    background-color:#ffebdd;
+}
+
+
+.footer{
+   margin-top:10%;
+}
+.main{
+    padding-top:5%;
+    padding-bottom:0%;
+    padding-right:0%;
+    padding-left:0%;
+}
+
+
+.active {
+    position: relative;
+    /* background-color : #020c1b; */
+    color : #fbbc93;
+    border-radius : 10px;
+  }
+  
+  .active:before, .active:after {
+      content: '';
+      position: absolute;
+      left: -2px;
+      top: -2px;
+    background: linear-gradient(to right,#2f4f4f,#ffa86e);
+      background-size: 400%;
+      width: calc(100% + 4px);
+      height: calc(100% + 4px);
+      z-index: -1;
+    border-radius : 10px;
+    border-radius: inherit;
+      animation: steam 20000s infinite alternate;
+  }
+  
+  
+  @keyframes steam {
+      0% {
+          background-position: 0 0; 
+      }
+      50% {
+          background-position: 400% 0;
+      }
+      100% {
+          background-position: 0 0;
+      }
+  }
+  
+  
