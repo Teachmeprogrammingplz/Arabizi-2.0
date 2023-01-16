@@ -4,8 +4,10 @@ import * as React from 'react';
 
 import Button from '@mui/material/Button';
 import { useState, useEffect } from 'react';
-import guess from '../Wassit/guess.json';
-import words from '../Wassit/words.json';
+import wassit_guess from '../Wassit/wassit_guess.json';
+import wassit_words from '../Wassit/wassit_words.json';
+import moassir_guess from '../Wassit/moassir_words.json';
+import moassir_words from '../Wassit/moassir_words.json';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -594,6 +596,9 @@ const letters_positions = ['ء', 'ب', 'ت', 'ث', 'ج', 'ح', 'خ', 'د', 'ذ',
 const font_size = {
   fontSize: 25,
 }
+let words_array=[wassit_words,moassir_words]
+
+let dictionnary_array=[wassit_guess,moassir_guess]
 function Guess() {
   const [main_root, useroot] = useState('');
   const [word, useword] = useState('آب');
@@ -601,24 +606,33 @@ function Guess() {
   const [bow_value, usebow] = useState('');
   const [letters, useletters] = useState([]);
   const [dictionnary, usedictionary] = useState('');
+  const [dict_choice, usedictchoice] = useState(0);
   const handleChange_dictionary = (event) => {
+    if(event.target.value==="Wassit"){
+        usedictchoice(0)
+    }
+    if(event.target.value==="Moassir"){
+      usedictchoice(1)
+
+    }
     usedictionary(event.target.value);
-    console.log(event.target.value)
+    // console.log(event.target.value)
   }
+
   useEffect(() => {
     var index = 0
-    var limit = guess.length
+    var limit = dictionnary_array[dict_choice].length
     for (var i = 0; i < limit; i++) {
-      if (guess[i].Word === word) {
+      if (dictionnary_array[dict_choice][i].Word === word) {
         index = i
         break
       }
     }
 
     // console.log(localization[index].Word)
-    useroot(guess[index].Root)
-    usecalculated(guess[index].Predicted_root)
-    usebow(guess[index].BOW)
+    useroot(dictionnary_array[dict_choice][index].Root)
+    usecalculated(dictionnary_array[dict_choice][index].Predicted_root)
+    usebow(dictionnary_array[dict_choice][index].BOW)
    
   }, [word]);
 
@@ -647,7 +661,7 @@ function Guess() {
           onChange={(event,value) => {useword(value.label)}} 
           disablePortal
           id="combo-box-demo"
-          options={words}
+          options={words_array[dict_choice]}
           sx={{ width: 300 }}
           renderInput={(params) => <TextField {...params} label="Choose Word" />}
          
